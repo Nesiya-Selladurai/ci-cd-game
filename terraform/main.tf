@@ -4,10 +4,10 @@ provider "aws" {
 
 resource "aws_instance" "game_server" {
   ami           = "ami-019715e0d74f695be" 
-  instance_type = "t2.small"
-  key_name      = "jenkins"
+  instance_type = "t3.small"
+  key_name      = "new"
 
-  security_groups = [aws_security_group.myDevopsProj.name]
+  security_groups = [aws_security_group.game.name]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -22,8 +22,8 @@ resource "aws_instance" "game_server" {
   }
 }
 
-resource "aws_security_group" "myDevopsProj" {
-  name = "myDevopsProj"
+resource "aws_security_group" "game" {
+  name = "game"
 
   ingress {
     from_port   = 22
